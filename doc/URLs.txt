@@ -1,0 +1,1 @@
+"settings.txt" and "time.txt" found on https://forums.linuxmint.com/viewtopic.php?t=234275

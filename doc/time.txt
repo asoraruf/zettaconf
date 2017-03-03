@@ -1,0 +1,4 @@
+time.dat (total: 12 bytes):
+- epoch time - uint32_t(time_t)
+- timezone bias - int32_t (not use anymore)
+- daylight bias - int32_t (not use anymore)
