@@ -58,7 +58,7 @@ void print_usage(){
 }
 
 int main(int argc, char *argv[], char *envp[]){
-	int i;
+	int i,ret;
 	int set_schedule, set_settings, set_time;
 	
 	set_schedule=0;
@@ -392,11 +392,24 @@ int main(int argc, char *argv[], char *envp[]){
 			return(1);
 		}
 	}
-	
-	if (set_settings) dvr_write_settings();
-	if (set_time) dvr_write_time();
-	if (set_schedule) dvr_write_schedule();
-	
+	if (set_settings){
+		printf("Saving \"%s\"...", DVR_SETTINGS_FILENAME);
+		ret=dvr_write_settings();
+		if (ret) return(ret);
+		printf("\t[OK]\n");
+	}
+	if (set_time){
+		printf("Saving \"%s\"...", DVR_TIME_FILENAME);
+		ret=dvr_write_time();
+		if (ret) return(ret);
+		printf("\t\t[OK]\n");
+	}
+	if (set_schedule){
+		printf("Saving \"%s\"...", DVR_SCHEDULE_FILENAME);
+		ret=dvr_write_schedule();
+		if (ret) return(ret);
+		printf("\t[OK]\n");
+	}
 	return (0);
 }
 

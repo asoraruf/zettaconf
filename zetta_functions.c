@@ -157,6 +157,47 @@ void dvr_print_schedule(){
 	printf("TODO");
 }
 
+void dvr_copy_settings(dvr_settings_t *dst_dvr_settings){
+	if (!dst_dvr_settings){
+		dst_dvr_settings->jpegqfactor = dvr_settings.jpegqfactor;
+		dst_dvr_settings->resolution = dvr_settings.resolution;
+		dst_dvr_settings->motiondetect = dvr_settings.motiondetect;
+		dst_dvr_settings->showtimestamp = dvr_settings.showtimestamp;
+		dst_dvr_settings->circularrec = dvr_settings.circularrec;
+		dst_dvr_settings->framerate = dvr_settings.framerate;
+		dst_dvr_settings->splitfiletime = dvr_settings.splitfiletime;
+		dst_dvr_settings->daynightmode = dvr_settings.daynightmode;
+		dst_dvr_settings->orientation = dvr_settings.orientation;
+		dst_dvr_settings->autostartmode = dvr_settings.autostartmode;
+		dst_dvr_settings->voxsens = dvr_settings.voxsens;
+		dst_dvr_settings->voicerec = dvr_settings.voicerec;
+		dst_dvr_settings->vibdetectsens = dvr_settings.vibdetectsens;
+		dst_dvr_settings->vibstandbymode = dvr_settings.vibstandbymode;
+		dst_dvr_settings->aliveduration = dvr_settings.aliveduration;
+		dst_dvr_settings->ledindication = dvr_settings.ledindication;
+		dst_dvr_settings->bandingfilter = dvr_settings.bandingfilter;
+		dst_dvr_settings->extintype = dvr_settings.extintype;
+		dst_dvr_settings->extouttype = dvr_settings.extouttype;
+		dst_dvr_settings->buzzarduration = dvr_settings.buzzarduration;
+		dst_dvr_settings->sensorsens = dvr_settings.sensorsens;
+		dst_dvr_settings->pir = dvr_settings.pir;	
+	}
+}
+
+void dvr_copy_time(dvr_time_t *dst_dvr_time){
+	if (!dst_dvr_time){
+		dst_dvr_time->epoch = dvr_time.epoch;
+		dst_dvr_time->timezone = dvr_time.timezone;
+		dst_dvr_time->daylight = dvr_time.daylight;
+	}
+}
+
+void dvr_copy_schedule(dvr_schedule_t *dst_dvr_schedule){
+	if (!dst_dvr_schedule){
+		printf("TODO");
+	}
+}
+
 int dvr_write_settings(){
 	int ret,wsize;
 	ret=dvr_open_rw_files();

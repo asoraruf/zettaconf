@@ -36,8 +36,7 @@ LIBS     =
 HDRS     = zetta_conf_files.h zetta_functions.h
 SRCS     = zetta_conf_files.c zetta_functions.c main.c
 OBJS     = $(SRCS:.c=.o)
-#DST_DIR  = /usr/local/bin
-DST_DIR  = C:\Users\nitro\Desktop\SPYZ15\Config\prove
+DST_DIR  = /usr/local/bin
 TARGET   = zettaconf
 
 # Targets

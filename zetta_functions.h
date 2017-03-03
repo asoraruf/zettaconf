@@ -36,10 +36,10 @@ void dvr_print_settings();
 void dvr_print_time();
 void dvr_print_schedule();
 
-int dvr_write_settings();
-int dvr_write_time();
-int dvr_write_schedule();
-
 void dvr_copy_settings(dvr_settings_t *dst_dvr_settings);
 void dvr_copy_time(dvr_time_t *dst_dvr_time);
 void dvr_copy_schedule(dvr_schedule_t *dst_dvr_schedule);
+
+int dvr_write_settings();
+int dvr_write_time();
+int dvr_write_schedule();
