@@ -147,7 +147,7 @@ void dvr_print_settings(){
 }
 
 void dvr_print_time(){
-	printf("Current epoch:       %d\n", dvr_time.epoch);
+	//printf("Current epoch:       %d\n", dvr_time.epoch);
 	printf("Current date/time:   %s", asctime(gmtime((time_t *)&(dvr_time.epoch))));
 	printf("Timezone:            %+d\n", dvr_time.timezone/3600);
 	printf("Daylight:            %+d\n", dvr_time.daylight/3600);
