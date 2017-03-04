@@ -382,10 +382,10 @@ int main(int argc, char *argv[], char *envp[]){
 			set_settings=1;
 		}else if (strcasecmp(argv[i],"--synctime")==0){
 			time_t now = time(NULL);
-			/* The camera uses UTC epoch only */
-			dvr_time.epoch = now + difftime(mktime(localtime(&now)), mktime(gmtime(&now)));
-			dvr_time.timezone = 0; // seems to be not used anymore
-			dvr_time.daylight = 0; // seems to be not used anymore
+			time_t offset = difftime(mktime(localtime(&now)),mktime(gmtime(&now)));
+			dvr_time.epoch = now;
+			dvr_time.timezone = offset;
+			dvr_time.daylight = 0;
 			set_time=1;
 		}else{
 			print_usage();

@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <utime.h>
 #include <errno.h>
 
 #include "zetta_conf_files.h"
@@ -147,8 +148,7 @@ void dvr_print_settings(){
 }
 
 void dvr_print_time(){
-	//printf("Current epoch:       %d\n", dvr_time.epoch);
-	printf("Current date/time:   %s", asctime(gmtime((time_t *)&(dvr_time.epoch))));
+	printf("Current date/time:   %s", asctime(localtime((time_t *)&(dvr_time.epoch))));
 	printf("Timezone:            %+d\n", dvr_time.timezone/3600);
 	printf("Daylight:            %+d\n", dvr_time.daylight/3600);
 }
@@ -212,6 +212,8 @@ int dvr_write_settings(){
 
 int dvr_write_time(){
 	int ret,wsize;
+	struct utimbuf dvr_new_times;
+	
 	ret=dvr_open_rw_files();
 	wsize=fwrite(&dvr_time,sizeof(dvr_time_t),1,fd_time);
 	if (!wsize){
@@ -219,6 +221,13 @@ int dvr_write_time(){
 		ret=errno;
 	}
 	dvr_close_files();
+	/* time.dat needs a modified time updated to apply */
+	dvr_new_times.actime = dvr_time.epoch+dvr_time.timezone+dvr_time.daylight;
+	dvr_new_times.modtime = dvr_time.epoch+dvr_time.timezone+dvr_time.daylight;;
+	if (utime(DVR_TIME_FILENAME, &dvr_new_times)){
+		perror(DVR_TIME_FILENAME);
+		ret=errno;
+	}
 	return(ret);
 }
 
