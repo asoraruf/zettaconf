@@ -17,14 +17,14 @@ To build zettaconf from source, the following tools are needed:
 
 To build and install zettaconf execute the following:
 
-  $ make
-  $ sudo make install
+    $ make
+    $ sudo make install
 
 ### Usage
 
-  $ zettaconf --print
-  $ zettaconf --help
-  $ zettaconf [--videoquality <low|medium|high>]
+    $ zettaconf --print
+    $ zettaconf --help
+    $ zettaconf [--videoquality <low|medium|high>]
       [--resolution <320x240|640x480|640x360|1280x720>]
       [--motiondetect <off|low|medium|high>]
       [--showtimestamp <off|on>]
