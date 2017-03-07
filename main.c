@@ -65,16 +65,14 @@ int main(int argc, char *argv[], char *envp[]){
 	set_settings=0;
 	set_time=0;
 
-    printf("\n");
-    printf(" -= Zetta Security Camcoders Configuration Utility =- \n");
-    printf("\n");
+	printf("\n");
+	printf(" -= Zetta Security Camcoders Configuration Utility =- \n");
+	printf("\n");
 	
 	if (argc < 2){
 		print_usage();
 		return(1);
 	}
-	
-	if (dvr_load_confs()) return(1);
 	
 	for (i = 1; i < argc; i++){
 		if (strcasecmp(argv[i],"--help")==0){
@@ -392,6 +390,9 @@ int main(int argc, char *argv[], char *envp[]){
 			return(1);
 		}
 	}
+
+	if (dvr_load_confs()) return(1);
+
 	if (set_settings){
 		printf("Saving \"%s\"...", DVR_SETTINGS_FILENAME);
 		ret=dvr_write_settings();

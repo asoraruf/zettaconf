@@ -98,6 +98,7 @@ void dvr_close_files(){
 int dvr_load_confs(){
 	int ret,rsize;
 	ret=dvr_open_ro_files();
+	if (ret) return(ret);
 	rsize=fread(&dvr_info,sizeof(dvr_info_t),1,fd_info);
 	if (!rsize){
 		perror(DVR_INFO_FILENAME);
