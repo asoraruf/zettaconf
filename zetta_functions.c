@@ -29,7 +29,7 @@
  
 FILE *fd_info;
 FILE *fd_sched;
-FILE *fd_set;
+FILE *fd_setting;
 FILE *fd_time;
 
 dvr_info_t     dvr_info;
@@ -50,8 +50,8 @@ int dvr_open_ro_files(){
 		perror(DVR_SCHEDULE_FILENAME);
 		ret=errno;
 	}
-	fd_set = fopen(DVR_SETTINGS_FILENAME,"r");
-	if (!fd_set){
+	fd_setting = fopen(DVR_SETTINGS_FILENAME,"r");
+	if (!fd_setting){
 		perror(DVR_SETTINGS_FILENAME);
 		ret=errno;
 	}
@@ -76,8 +76,8 @@ int dvr_open_rw_files(){
 		perror(DVR_SCHEDULE_FILENAME);
 		ret=errno;
 	}
-	fd_set = fopen(DVR_SETTINGS_FILENAME,"r+");
-	if (!fd_set){
+	fd_setting = fopen(DVR_SETTINGS_FILENAME,"r+");
+	if (!fd_setting){
 		perror(DVR_SETTINGS_FILENAME);
 		ret=errno;
 	}
@@ -91,7 +91,7 @@ int dvr_open_rw_files(){
 void dvr_close_files(){
 	fclose(fd_info);
 	fclose(fd_sched);
-	fclose(fd_set);
+	fclose(fd_setting);
 	fclose(fd_time);
 }
 
@@ -103,7 +103,7 @@ int dvr_load_confs(){
 		perror(DVR_INFO_FILENAME);
 		ret=errno;
 	}
-	rsize=fread(&dvr_settings,sizeof(dvr_settings_t),1,fd_set);
+	rsize=fread(&dvr_settings,sizeof(dvr_settings_t),1,fd_setting);
 	if (!rsize){
 		perror(DVR_SETTINGS_FILENAME);
 		ret=errno;
@@ -201,7 +201,7 @@ void dvr_copy_schedule(dvr_schedule_t *dst_dvr_schedule){
 int dvr_write_settings(){
 	int ret,wsize;
 	ret=dvr_open_rw_files();
-	wsize=fwrite(&dvr_settings,sizeof(dvr_settings_t),1,fd_set);
+	wsize=fwrite(&dvr_settings,sizeof(dvr_settings_t),1,fd_setting);
 	if (!wsize){
 		perror(DVR_SETTINGS_FILENAME);
 		ret=errno;
